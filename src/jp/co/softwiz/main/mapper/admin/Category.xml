@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Category">
+	<!-- ************************************************************************************************************* -->
+	<!-- カテゴリ情報  -->
+	<!-- ************************************************************************************************************* -->
+
+	<!-- 大分類カテゴリ情報を取得する -->
+	<select id="selectMasterList" parameterType="jp.co.softwiz.main.domain.admin.CateMainBean"
+					resultType="jp.co.softwiz.main.domain.admin.CateMainBean" statementType="CALLABLE">
+
+		SELECT   a.mainCode, a.mainName, b.subNum, a.useDiv, a.etcDesc
+		   		,to_char(a.createDate, 'YYYY-MM-DD') as createDay, a.deleteFlag
+		  FROM t_cate_main a left outer join
+					(SELECT mainCode, count(*) subNum
+					   FROM t_cate_sub
+					  WHERE deleteFlag = 'N'
+					 GROUP BY mainCode ) b on a.mainCode = b.mainCode
+		 WHERE a.deleteFlag = 'N'
+				 <if test='searchMainCode != null'>
+				   AND a.mainCode like '%' || #{searchMainCode} || '%'
+				 </if>
+				 <if test='searchMainName != null'>
+				   AND a.mainName like '%' || #{searchMainName} || '%'
+				 </if>
+		ORDER BY a.mainCode
+	</select>
+
+	<!-- 大分類カテゴリの使用可否情報を変更する -->
+	<update id="updateCateMainUseDiv" parameterType="jp.co.softwiz.main.domain.admin.CateMainBean" statementType="CALLABLE">
+		UPDATE t_cate_main
+		   SET
+			    usediv = #{useDiv}
+			   ,modifyDate = now()
+			   ,modifyUser = #{modifyUser}
+		 WHERE
+			   maincode = #{mainCode}
+	</update>
+
+	<!-- 中分類カテゴリ情報を取得する -->
+	<select id="selectDetailList" parameterType="jp.co.softwiz.main.domain.admin.CateMainBean"
+					resultType="jp.co.softwiz.main.domain.admin.CateSubBean" statementType="CALLABLE">
+
+		SELECT maincode, subcode, subname, subvalue, subvalue2, subvalue3, vieworder, usediv, etcdesc
+				,to_char(createdate, 'YYYY-MM-DD') as createDay, deleteflag
+		  FROM t_cate_sub
+		 WHERE maincode = #{maincode}
+		ORDER BY vieworder
+	</select>
+
+	<!-- 中分類カテゴリリストを取得する -->
+	<select id="getCateSubListOrder" parameterType="jp.co.softwiz.main.domain.admin.CateSubBean"
+					resultType="jp.co.softwiz.main.domain.admin.CateSubBean" statementType="CALLABLE">
+		SELECT maincode, subcode, subname, subvalue, subvalue2, subvalue3, vieworder,
+		       usediv, etcdesc,to_char(createDate, 'YYYY-MM-DD') as createDay, deleteFlag
+		  FROM t_cate_sub
+		 WHERE mainCode = #{maincode}
+		ORDER BY vieworder  FOR UPDATE
+	</select>
+
+	<!-- 中分類カテゴリ情報を登録する。 -->
+	<insert id="insertCateSub" parameterType="jp.co.softwiz.main.domain.admin.CateSubBean" statementType="CALLABLE">
+		INSERT INTO t_cate_sub(
+		            maincode, subcode, subname, subvalue, subvalue2, subvalue3, vieworder,
+		            usediv, etcdesc, createdate, createuser, modifydate, modifyuser, deleteflag)
+		    VALUES (#{maincode}, #{subcode},
+					#{subname}, #{subvalue}, #{subvalue2}, #{subvalue3}, #{vieworder},
+		            #{usediv}, #{etcdesc}, now(), #{createuser}, now(), #{createuser}, 'N');
+
+	</insert>
+
+	<!-- 中分類カテゴリ情報を削除する。 -->
+	<delete id="deleteCateSubForMainKey" parameterType="jp.co.softwiz.main.domain.admin.CateMainBean" statementType="CALLABLE">
+		DELETE FROM t_cate_sub
+		 WHERE
+			   maincode = #{maincode}
+	</delete>
+
+	<!-- 大分類カテゴリ情報を取得する -->
+	<select id="selectCateMainMaxKey" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT trim(to_char(to_number(coalesce(max(maincode),'0'),'999')+1,'009'))
+		FROM t_cate_main
+
+	</select>
+
+	<!-- 大分類カテゴリ情報を取得する -->
+	<select id="selectCateSubMaxKey" parameterType="jp.co.softwiz.main.domain.admin.CateSubBean" resultType="java.lang.String" statementType="CALLABLE">
+		SELECT trim(to_char(to_number(coalesce(max(subcode),'0'),'999')+1,'009'))
+		  FROM t_cate_sub
+		 WHERE maincode = #{maincode}
+
+	</select>
+
+
+</mapper>

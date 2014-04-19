@@ -1,0 +1,12 @@
+#parse ("common/header.vm")
+<div id="content">
+
+	<div id="breadcrumb">
+	<a href="../mypage/main.html"><strong>Home</strong></a></div>
+<h1>◎マイページ</h1>
+<div id='loading' style='display:none'>loading...</div>
+<div id="dialog" title="案件情報" style="overflow:hidden;background-color:white">
+<a href="../admin/category.html">カテゴリ情報</a><br>
+<a href="../test/testlist.html">テスト情報</a>
+</div>
+#parse ("common/bottom.vm")

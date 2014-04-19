@@ -1,0 +1,64 @@
+#parse ("common/header.vm")
+<div id="content">
+
+	<div id="breadcrumb">
+	<a href="../mypage/main.html">Home</a> / 管理ページ / <strong>カテゴリ情報</strong></div>
+<h1>◎ユーザ登録</h1>
+<div id="form_container">
+<form id="f"  name="f" method="post" action="../admin/categorysubregist.html" class="f-wrap-1">
+<input type="hidden" name="searchMaincode" value="$!{info.searchMaincode}">
+<input type="hidden" name="searchMainname" value="$!{info.searchMainname}">
+<fieldset>
+<h3>基本情報</h3>
+	<label for="maincode"><b>大分類コード:</b>
+		<input class="disabledtext" id="maincode" name="maincode" type="text" maxlength="3" value="$!{bean.maincode}" readonly/>
+	</label>
+	<label for="subcode"><b>中分類コード:</b>
+		<input class="disabledtext" id="subcode" name="subcode" type="text" maxlength="3" value="$!{bean.subcode}" readonly/>
+	</label>
+	<label for="subname"><b>中分類名:</b>
+			<input id="subname" name="subname" type="text" maxlength="50" value="$!{bean.subname}"/>
+	</label>
+	<label for="subvalue"><b>中分類値:</b>
+			<input id="subvalue" name="subvalue" type="text" maxlength="50" value="$!{bean.subvalue}"/>
+	</label>
+	<label for="subvalue2"><b>中分類値2:</b>
+			<input id="subvalue2" name="subvalue2" type="text" maxlength="50" value="$!{bean.subvalue2}"/>
+	</label>
+	<label for="subvalue3"><b>中分類値3:</b>
+			<input id="subvalue3" name="subvalue3" type="text" maxlength="50" value="$!{bean.subvalue3}"/>
+	</label>
+	<label for="vieworder"><b>表示順番:</b>
+		<select name="vieworder" style="width:200px;" tabIndex=5>
+			#if($!bean.subcode != "")
+				#set($i = $!bean.maxVieworder - 1)
+			#else
+				#set($i = $!bean.maxVieworder)
+			#end
+			#foreach($i in [$i..1])
+			<option value="$i" #if($i==$!bean.viewOrder)selected#end>$i</option>
+			#end
+			</select>
+	</label>
+	<label for="usediv"><b>使用区分:</b>
+		<select id="usediv" name="usediv">
+			<option value="Y" #if($!bean.usediv=='Y')selected#end>Y</option>
+			<option value="N" #if($!bean.usediv=='N')selected#end>N</option>
+		</select>
+	</label>
+	<label for="etcdesc"><b>備考:</b>
+			<input id="etcdesc" name="etcdesc" type="text" maxlength="50" value="$!{bean.etcdesc}"/>
+	</label>
+	<br>
+	<div class="f-submit-wrap">
+		<input id="saveForm"  class="f-submit" type="submit" name="submit" value=" 登録 "/>&nbsp;
+		<input id="saveForm"  class="f-submit" type="button" name="cancel" value=" 取消 " onclick="history.back();"><br />
+	</div>
+</fieldset>
+<br>
+
+</form>
+</div>
+</section>
+<script type="text/javascript" src='../common/js/admin/categorysubview.js'></script>
+#parse ("common/bottom.vm")

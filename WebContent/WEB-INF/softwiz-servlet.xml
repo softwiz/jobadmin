@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+ 	<aop:aspectj-autoproxy/>
+	<bean class="jp.co.softwiz.main.common.util.LoggingAspect" id="logAspect"></bean>
+	<bean class="jp.co.softwiz.main.common.util.LoginCheckAspect" id="loginAspect"></bean>
+
+	<context:component-scan base-package="jp.co.softwiz" />
+
+	<mvc:annotation-driven/>
+
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>WEB-INF/properties/jdbc.properties</value>
+				<value>WEB-INF/properties/templates.properties</value>
+				<value>classpath:jp/co/softwiz/main/mapper/db.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+	    <property name="hostName" value="115.179.36.73"/>
+	    <property name="port" value="6379"/>
+	    <property name="password" value="gunny21"/>
+	    <property name="usePool" value="true" />
+	</bean>
+
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+		p:connection-factory-ref="connectionFactory"/>
+
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connection-factory-ref="connectionFactory" p:key-serializer-ref="stringKeySerializer"/>
+
+	<bean id ="stringKeySerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+
+	<mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang" />
+        </bean>
+    </mvc:interceptors>
+
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="basenames">
+	         <list>
+	          <value>WEB-INF/properties/messages</value>
+	         </list>
+     	</property>
+     	<property name="fallbackToSystemLocale" value="false"/>
+     	<property name="cacheSeconds" value="5"/>
+	</bean>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	     <property name="defaultLocale" value="ja" />
+	</bean>
+
+
+	<bean id="configSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>WEB-INF/properties/config</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >
+	   <property name="messageConverters">
+	      <list>
+	         <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+	            <property name = "supportedMediaTypes">
+	               <list>
+	                  <value>text/plain;charset=UTF-8</value>
+	               </list>
+	            </property>
+	         </bean>
+	      </list>
+	   </property>
+	</bean>
+
+	<bean id="ContentNegotiatingResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+		    <map>
+		        <entry key="html" value="text/html" />
+		        <entry key="xml" value="application/xml" />
+	            <entry key="json" value="application/json" />
+	            <entry key="text" value="text/plain"/>
+		    </map>
+		</property>
+	</bean>
+
+
+	<bean id="exceptionMapping" class="jp.co.softwiz.main.common.error.PreludebExceptionResolver"></bean>
+
+
+	<bean id="dataSource-postgres" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${postgres.jdbc.driverClass}"/>
+		<property name="url" value="${postgres.jdbc.url}"/>
+		<property name="username" value="${postgres.jdbc.username}"/>
+		<property name="password" value="${postgres.jdbc.password}"/>
+		<property name="maxActive" value="${postgres.jdbc.maxactive}"/>
+	</bean>
+
+	<bean id="dataSource-mssql" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${mssql.jdbc.driverClass}"/>
+		<property name="url" value="${mssql.jdbc.url}"/>
+		<property name="username" value="${mssql.jdbc.username}"/>
+		<property name="password" value="${mssql.jdbc.password}"/>
+		<property name="maxActive" value="${mssql.jdbc.maxactive}"/>
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource-${default.dbname}"/>
+		<property name="mapperLocations" value="classpath:jp/co/softwiz/main/mapper/**/*.xml"/>
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource-${default.dbname}"/>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+	<bean id="velocityConfigurer"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="${templates.defaultpath}" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="suffix" value="${templates.file.extension}" />
+		<property name="toolboxConfigLocation" value="${velocity.toolboxConfigLocation}"/>
+		<property name="cache" value="${velocity.cache}" />
+		<property name="exposeSpringMacroHelpers">
+			<value>true</value>
+		</property>
+		<property name="exposeRequestAttributes">
+			<value>true</value>
+		</property>
+		<property name="exposeSessionAttributes">
+			<value>true</value>
+		</property>
+		<property name="contentType" value="text/html; charset=UTF-8" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>10000000</value>
+		</property>
+	</bean>
+
+
+
+
+</beans>
+
