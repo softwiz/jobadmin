@@ -5,7 +5,7 @@
 
 	<context id="context1">
 		<jdbcConnection driverClass="org.postgresql.Driver"
-			connectionURL="jdbc:postgresql://localhost:5432/job" userId="postgres"
+			connectionURL="jdbc:postgresql://115.179.36.73:5432/job" userId="postgres"
 			password="gunny21" />
 
 		<javaTypeResolver>
@@ -13,12 +13,27 @@
 		</javaTypeResolver>
 
 		<javaModelGenerator targetPackage="jp.co.softwiz.main.domain"
-			targetProject="job" />
+			targetProject="jobadmin" />
 
 		<sqlMapGenerator targetPackage="jp.co.softwiz.main.mapper"
-			targetProject="job" />
+			targetProject="jobadmin" />
 
-		<table schema="" tableName="t_test_info" enableDeleteByExample="false" enableCountByExample="false"
+		<table schema="" tableName="T_BOARD_MASTER_INFO" enableDeleteByExample="false" enableCountByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false"
+			enableSelectByExample="false" modelType="flat"/>
+		<table schema="" tableName="T_NEWS_INFO" enableDeleteByExample="false" enableCountByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false"
+			enableSelectByExample="false" modelType="flat"/>
+		<table schema="" tableName="T_TOIAWASE_INFO" enableDeleteByExample="false" enableCountByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false"
+			enableSelectByExample="false" modelType="flat"/>
+		<table schema="" tableName="T_COMPANY_INFO" enableDeleteByExample="false" enableCountByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false"
+			enableSelectByExample="false" modelType="flat"/>
+		<table schema="" tableName="T_USER_INFO" enableDeleteByExample="false" enableCountByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false"
+			enableSelectByExample="false" modelType="flat"/>
+		<table schema="" tableName="T_SITE_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
 	</context>

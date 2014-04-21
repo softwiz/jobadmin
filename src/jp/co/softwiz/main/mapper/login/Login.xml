@@ -2,12 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Login">
 	<select id="getLoginUser" parameterType="jp.co.softwiz.main.domain.login.LoginBean" resultType="jp.co.softwiz.main.domain.login.LoginBean" statementType="CALLABLE">
-		SELECT b.siteId, a.userId, a.password, a.roles, a.sessionId, a.connectIp, to_char(a.connectDate,'YYYY年MM月DDer日') as connectDay, a.userCode, b.userName
-		  FROM t_login_info a, t_user_info b
-		 WHERE a.userCode = b.userCode
-		   AND a.userId = #{userid}
+		SELECT a.siteId, a.userId, a.password, a.roles, a.sessionId, a.connectIp, to_char(a.connectDate,'YYYY年MM月DDer日') as connectDay, a.userCode, b.userName
+		  FROM t_login_info a left outer join t_user_info b on a.userCode = b.userCode
+		 WHERE a.userId = #{userid}
 		   AND a.deleteFlag = 'N'
-		   AND b.deleteFlag = 'N'
 	</select>
 
 	<update id="updateLoginInfo" parameterType="jp.co.softwiz.main.domain.login.LoginBean" statementType="CALLABLE">

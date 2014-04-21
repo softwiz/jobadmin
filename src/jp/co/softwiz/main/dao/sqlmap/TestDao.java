@@ -32,18 +32,18 @@ public class TestDao extends SqlSessionDaoSupport {
 	}
 
 	public TestInfoBean select(TestInfoBean bean) {
-		return sqlSessionTemplate.selectOne("TTestInfoMapper.selectByPrimaryKey", bean);
+		return sqlSessionTemplate.selectOne("jp.co.softwiz.main.mapper.TTestInfoMapper.selectByPrimaryKey", bean);
 	}
 
 	public void insert(TestInfoBean bean) {
-		sqlSessionTemplate.insert("TTestInfoMapper.insert", bean);
+		sqlSessionTemplate.insert("jp.co.softwiz.main.mapper.TTestInfoMapper.insert", bean);
 	}
 
 	public void update(TestInfoBean bean) {
-		sqlSessionTemplate.update("TTestInfoMapper.updateByPrimaryKeySelective", bean);
+		sqlSessionTemplate.update("jp.co.softwiz.main.mapper.TTestInfoMapper.updateByPrimaryKeySelective", bean);
 	}
 
 	public void delete(TestInfoBean bean) {
-		sqlSessionTemplate.delete("TTestInfoMapper.deleteByPrimaryKey", bean);
+		sqlSessionTemplate.delete("jp.co.softwiz.main.mapper.TTestInfoMapper.deleteByPrimaryKey", bean);
 	}
 }
