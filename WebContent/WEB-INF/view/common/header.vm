@@ -37,34 +37,70 @@
 <div id="wrap">
 
 	<div id="header">
-		<div id="site-name">SOFTWIZ</div>
+		<div id="site-name">求人サイト管理</div>
 		<ul id="nav">
 		<li id="mypage"><a href="../mypage/main.html">HOME</a></li>
 
-		<li id="adm">
-			<a href="../adm/admlist.html">案件管理</a>
+		<li id="site">
+			<a href="../admin/sitelist.html">サイト管理</a>
 			<ul>
-				<li id="admlist"><a href="../adm/admlist.html">案件情報閲覧</a></li>
-				<li id="admlist2"><a href="../adm/admlist2.html?flag=2">進行中案件閲覧</a></li>
-				<li id="admlist3"><a href="../adm/admlist3.html?flag=3">承認済み案件閲覧</a></li>
+				<li id="sitelist"><a href="../admin/sitelist.html">サイト情報閲覧</a></li>
 			</ul>
 		</li>
-		<li id="do">
-			<a href="../adm/admdolist.html">承認管理</a>
+		<li id="jobseek">
+			<a href="../admin/userlist.html">求職者管理</a>
 			<ul>
-				<li id="admdo"><a href="../adm/admdolist.html">承認情報閲覧</a></li>
-				<li id="admdoing"><a href="../adm/admdoinglist.html">進行中承認閲覧</a></li>
-				<li id="admcomplete"><a href="../adm/admcompletedolist.html">承認済み承認閲覧</a></li>
+				<li id="userlist"><a href="../admin/userlist.html">ユーザ情報閲覧</a></li>
+				<li id="jobseeklist"><a href="../admin/jobseeklist.html">求職現状閲覧</a></li>
 			</ul>
 		</li>
-		<li id="flow"><a href="../adm/admflowlist.html">承認フロー管理</a></li>
-		<li id="dept"><a href="../admin/deptlist.html">部門情報管理</a></li>
-		<li id="admin">
-			<a href="../admin/settingregist.html">設定管理</a>
+		<li id="joboffer">
+			<a href="../admin/companylist.html">求人者管理</a>
 			<ul>
-				<li id="settingregist"><a href="../admin/settingregist.html">承認設定管理</a></li>
-				<li id="userlist"><a href="../admin/userlist.html">ユーザ情報管理</a></li>
-				<li id="samplelist"><a href="../admin/samplelist.html">テンプレート管理</a></li>
+				<li id="companylist"><a href="../admin/companylist.html">企業情報閲覧</a></li>
+				<li id="jobofferlist"><a href="../admin/jobofferlist.html">求人現状閲覧</a></li>
+			</ul>
+		</li>
+		<li id="customer">
+			<a href="../admin/newslist.html">顧客管理</a>
+			<ul>
+				<li id="newslist"><a href="../admin/newslist.html">お知らせ情報閲覧</a></li>
+				<li id="toiawaselist"><a href="../admin/toiawaselist.html">お問い合わせ情報閲覧</a></li>
+				<li id="faqlist"><a href="../admin/faqlist.html">FAQ情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="board">
+			<a href="../admin/boardmasterlist.html">掲示板管理</a>
+			<ul>
+				<li id="boardmasterlist"><a href="../admin/boardmasterlist.html">掲示板マスタ情報閲覧</a></li>
+				<li id="boardlist"><a href="../admin/boardlist.html">掲示板情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="category">
+			<a href="../admin/categorylist.html">カテゴリ管理</a>
+			<ul>
+				<li id="categorylist"><a href="../admin/categorylist.html">カテゴリ情報閲覧</a></li>
+				<li id="arealist"><a href="../admin/arealist.html">都道府県情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="statistics">
+			<a href="../admin/statisticslist.html">統計管理</a>
+			<ul>
+				<li id="statisticslist"><a href="../admin/statisticslist.html">統計情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="adv">
+			<a href="../adv/advlist.html">広告管理</a>
+			<ul>
+				<li id="advlist"><a href="../admin/advlist.html">広告情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="etc">
+			<a href="../admin/paidservicelist.html">その他管理</a>
+			<ul>
+				<li id="paidservicelist"><a href="../admin/paidservicelist.html">有料サービス情報閲覧</a></li>
+				<li id="settlelist"><a href="../admin/settlelist.html">決済情報閲覧</a></li>
+				<li id="keywordlist"><a href="../admin/keywordlist.html">キーワード情報閲覧</a></li>
 			</ul>
 		</li>
 		<li><a href="../j_spring_security_logout">ログアウト</a></li>
@@ -76,32 +112,67 @@
 		<div id="utility">
 
 			<ul id="nav-secondary">
-			<li><a href="/">マイページ</a></li>
 
-		<li id="ladm">
-			<a href="../adm/admlist.html">案件管理</a>
+		<li id="lsite">
+			<a href="../admin/sitelist.html">サイト管理</a>
 			<ul>
-				<li id="ladmlist"><a href="../adm/admlist.html">案件情報閲覧</a></li>
-				<li id="ladmlist2"><a href="../adm/admlist2.html?flag=2">進行中案件閲覧</a></li>
-				<li id="ladmlist3"><a href="../adm/admlist3.html?flag=3">承認済み案件閲覧</a></li>
+				<li id="lsitelist"><a href="../admin/sitelist.html">サイト情報閲覧</a></li>
 			</ul>
 		</li>
-		<li>
-			<a href="../adm/admdolist.html">承認管理</a>
+		<li id="ljobseek">
+			<a href="../admin/userlist.html">求職者管理</a>
 			<ul>
-				<li id="ladmdo"><a href="../adm/admdolist.html">承認情報閲覧</a></li>
-				<li id="ladmdoing"><a href="../adm/admdoinglist.html">進行中承認閲覧</a></li>
-				<li id="ladmcomplete"><a href="../adm/admcompletedolist.html">承認済み承認閲覧</a></li>
+				<li id="luserlist"><a href="../admin/userlist.html">ユーザ情報閲覧</a></li>
+				<li id="ljobseeklist"><a href="../admin/jobseeklist.html">求職現状閲覧</a></li>
 			</ul>
 		</li>
-		<li id="lflow"><a href="../adm/admflowlist.html">承認フロー管理</a></li>
-		<li id="ldept"><a href="../admin/deptlist.html">部門情報管理</a></li>
-		<li id="ladmin">
-			<a href="../admin/settingregist.html">設定管理</a>
+		<li id="ljoboffer">
+			<a href="../admin/companylist.html">求人者管理</a>
 			<ul>
-				<li id="lsettingregist"><a href="../admin/settingregist.html">承認設定管理</a></li>
-				<li id="luserlist"><a href="../admin/userlist.html">ユーザ情報管理</a></li>
-				<li id="lsamplelist"><a href="../admin/samplelist.html">テンプレート管理</a></li>
+				<li id="lcompanylist"><a href="../admin/companylist.html">企業情報閲覧</a></li>
+				<li id="ljobofferlist"><a href="../admin/jobofferlist.html">求人現状閲覧</a></li>
+			</ul>
+		</li>
+		<li id="lcustomer">
+			<a href="../admin/newslist.html">顧客管理</a>
+			<ul>
+				<li id="lnewslist"><a href="../admin/newslist.html">お知らせ情報閲覧</a></li>
+				<li id="ltoiawaselist"><a href="../admin/toiawaselist.html">お問い合わせ情報閲覧</a></li>
+				<li id="lfaqlist"><a href="../admin/faqlist.html">FAQ情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="lboard">
+			<a href="../admin/boardmasterlist.html">掲示板管理</a>
+			<ul>
+				<li id="lboardmasterlist"><a href="../admin/boardmasterlist.html">掲示板マスタ情報閲覧</a></li>
+				<li id="lboardlist"><a href="../admin/boardlist.html">掲示板情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="lcategory">
+			<a href="../admin/categorylist.html">カテゴリ管理</a>
+			<ul>
+				<li id="lcategorylist"><a href="../admin/categorylist.html">カテゴリ情報閲覧</a></li>
+				<li id="larealist"><a href="../admin/arealist.html">都道府県情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="lstatistics">
+			<a href="../admin/statisticslist.html">統計管理</a>
+			<ul>
+				<li id="lstatisticslist"><a href="../admin/statisticslist.html">統計情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="ladv">
+			<a href="../adv/advlist.html">広告管理</a>
+			<ul>
+				<li id="ladvlist"><a href="../admin/advlist.html">広告情報閲覧</a></li>
+			</ul>
+		</li>
+		<li id="letc">
+			<a href="../admin/paidservicelist.html">その他管理</a>
+			<ul>
+				<li id="lpaidservicelist"><a href="../admin/paidservicelist.html">有料サービス情報閲覧</a></li>
+				<li id="lsettlelist"><a href="../admin/settlelist.html">決済情報閲覧</a></li>
+				<li id="lkeywordlist"><a href="../admin/keywordlist.html">キーワード情報閲覧</a></li>
 			</ul>
 		</li>
 			</ul>
@@ -110,48 +181,74 @@
 
 $(function(){
 	var path = window.location.pathname.split("/");
-	 if(path[3].indexOf("admlist.html")>=0) {
-	 	$('#adm').addClass("active");
-	 	$('#admlist').addClass("active");
-	 	$('#ladmlist').addClass("active");
-	 } else if(path[3].indexOf("admlist2.html")>=0) {
-		 $('#adm').addClass("active");
-		 $('#admlist2').addClass("active");
-		 $('#ladmlist2').addClass("active");
-	 } else if(path[3].indexOf("admlist3.html")>=0) {
-		 $('#adm').addClass("active");
-		 $('#admlist3').addClass("active");
-		 $('#ladmlist3').addClass("active");
-	 } else if(path[3].indexOf("admdolist.html")>=0) {
-		 $('#do').addClass("active");
-		 $('#admdo').addClass("active");
-		 $('#ladmdo').addClass("active");
-	 } else if(path[3].indexOf("admdoinglist.html")>=0) {
-		 $('#do').addClass("active");
-		 $('#admdoing').addClass("active");
-		 $('#ladmdoing').addClass("active");
-	 } else if(path[3].indexOf("admcompletedolist.html")>=0) {
-		 $('#do').addClass("active");
-		 $('#admcomplete').addClass("active");
-		 $('#ladmcomplete').addClass("active");
-	 } else if(path[3].indexOf("admflowlist.html")>=0) {
-		 $('#flow').addClass("active");
-		 $('#lflow').addClass("active");
-	 } else if(path[3].indexOf("deptlist.html")>=0) {
-		 $('#dept').addClass("active");
-		 $('#ldept').addClass("active");
+	 if(path[3].indexOf("sitelist.html")>=0) {
+	 	$('#site').addClass("active");
+	 	$('#sitelist').addClass("active");
+	 	$('#lsitelist').addClass("active");
 	 } else if(path[3].indexOf("userlist.html")>=0) {
-		 $('#admin').addClass("active");
+		 $('#jobseek').addClass("active");
 		 $('#userlist').addClass("active");
 		 $('#luserlist').addClass("active");
-	 } else if(path[3].indexOf("settingregist.html")>=0) {
-		 $('#admin').addClass("active");
-		 $('#settingregist').addClass("active");
-		 $('#lsettingregist').addClass("active");
-	 } else if(path[3].indexOf("samplelist.html")>=0) {
-		 $('#admin').addClass("active");
-		 $('#samlelist').addClass("active");
-		 $('#lsamplelist').addClass("active");
+	 } else if(path[3].indexOf("jobseeklist.html")>=0) {
+		 $('#jobseek').addClass("active");
+		 $('#jobseeklist').addClass("active");
+		 $('#ljobseeklist').addClass("active");
+	 } else if(path[3].indexOf("companylist.html")>=0) {
+		 $('#joboffer').addClass("active");
+		 $('#companylist').addClass("active");
+		 $('#lcompanylist').addClass("active");
+	 } else if(path[3].indexOf("jobofferlist.html")>=0) {
+		 $('#joboffer').addClass("active");
+		 $('#jobofferlist').addClass("active");
+		 $('#ljobofferlist').addClass("active");
+	 } else if(path[3].indexOf("newslist.html")>=0) {
+		 $('#costomer').addClass("active");
+		 $('#newslist').addClass("active");
+		 $('#lnewslist').addClass("active");
+	 } else if(path[3].indexOf("toiawaselist.html")>=0) {
+		 $('#coustomer').addClass("active");
+		 $('#toiawaselist').addClass("active");
+		 $('#ltoiawaselist').addClass("active");
+	 } else if(path[3].indexOf("faqlist.html")>=0) {
+		 $('#costomer').addClass("active");
+		 $('#faqlist').addClass("active");
+		 $('#lfaqlist').addClass("active");
+	 } else if(path[3].indexOf("boardmasterlist.html")>=0) {
+		 $('#board').addClass("active");
+		 $('#boardmasterlist').addClass("active");
+		 $('#lboardmasterlist').addClass("active");
+	 } else if(path[3].indexOf("boardlist.html")>=0) {
+		 $('#board').addClass("active");
+		 $('#boardlist').addClass("active");
+		 $('#lboardlist').addClass("active");
+	 } else if(path[3].indexOf("categorylist.html")>=0) {
+		 $('#category').addClass("active");
+		 $('#categorylist').addClass("active");
+		 $('#lcategorylist').addClass("active");
+	 } else if(path[3].indexOf("arealist.html")>=0) {
+		 $('#category').addClass("active");
+		 $('#arealist').addClass("active");
+		 $('#larealist').addClass("active");
+	 } else if(path[3].indexOf("statisticslist.html")>=0) {
+		 $('#statistics').addClass("active");
+		 $('#statisticslist').addClass("active");
+		 $('#lstatisticslist').addClass("active");
+	 } else if(path[3].indexOf("advlist.html")>=0) {
+		 $('#adv').addClass("active");
+		 $('#advlist').addClass("active");
+		 $('#ladvlist').addClass("active");
+	 } else if(path[3].indexOf("paidservicelist.html")>=0) {
+		 $('#etc').addClass("active");
+		 $('#paidservicelist').addClass("active");
+		 $('#lpaidservicelist').addClass("active");
+	 } else if(path[3].indexOf("settlelist.html")>=0) {
+		 $('#etc').addClass("active");
+		 $('#settlelist').addClass("active");
+		 $('#lsettlelist').addClass("active");
+	 } else if(path[3].indexOf("keywordlist.html")>=0) {
+		 $('#etc').addClass("active");
+		 $('#keywordlist').addClass("active");
+		 $('#lkeywordlist').addClass("active");
 	 }
 
 });

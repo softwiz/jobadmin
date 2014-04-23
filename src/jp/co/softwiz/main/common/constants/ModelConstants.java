@@ -45,7 +45,7 @@ public class ModelConstants {
 	public static final String REQ_MAPPING_MAIN										= "/mypage/main";
 
 	//カテゴリ情報
-	public static final String REQ_MAPPING_CATEGORY 								= "/admin/category";
+	public static final String REQ_MAPPING_CATEGORY 								= "/admin/categorylist";
 	public static final String REQ_MAPPING_CATEGORY_VIEW							= "/admin/categoryview";
 	public static final String REQ_MAPPING_CATEGORY_REGIST							= "/admin/categoryregist";
 	public static final String REQ_MAPPING_CATEGORY_DELETE 							= "/admin/categorydelete";
