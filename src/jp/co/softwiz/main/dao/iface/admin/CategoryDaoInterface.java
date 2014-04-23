@@ -11,6 +11,8 @@
 
 package jp.co.softwiz.main.dao.iface.admin;
 
+import java.util.List;
+
 import jp.co.softwiz.main.dao.iface.MasterDetailDaoInterface;
 import jp.co.softwiz.main.domain.admin.CateMainBean;
 import jp.co.softwiz.main.domain.admin.CateSubBean;
@@ -29,4 +31,6 @@ public interface CategoryDaoInterface extends MasterDetailDaoInterface<CateMainB
 	public void deleteCateSubForMainKey(CateMainBean bean);
 
 	public void updateCateMainUseDiv(CateMainBean bean);
+
+	public List<CateSubBean> selectCateSubListForUseDiv(CateMainBean bean);
 }

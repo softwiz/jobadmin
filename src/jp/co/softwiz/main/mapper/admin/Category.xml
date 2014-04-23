@@ -91,5 +91,16 @@
 
 	</select>
 
+	<!-- 中分類カテゴリ情報を取得する -->
+	<select id="selectCateSubListForUseDiv" parameterType="jp.co.softwiz.main.domain.admin.CateMainBean"
+					resultType="jp.co.softwiz.main.domain.admin.CateSubBean" statementType="CALLABLE">
+
+		SELECT maincode, subcode, subname, subvalue, subvalue2, subvalue3, vieworder, usediv, etcdesc
+				,to_char(createdate, 'YYYY-MM-DD') as createDay, deleteflag
+		  FROM t_cate_sub
+		 WHERE maincode = #{maincode}
+		   AND usediv = 'Y'
+	</select>
+
 
 </mapper>

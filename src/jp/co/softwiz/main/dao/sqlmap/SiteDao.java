@@ -28,7 +28,7 @@ public class SiteDao extends SqlSessionDaoSupport {
 	@Autowired protected SqlSessionTemplate sqlSessionTemplate;
 
 	public List<SiteInfoBean> selectList(SiteInfoBean bean){
-		return sqlSessionTemplate.selectList("Site.selectList", bean);
+		return sqlSessionTemplate.selectList("Site.selectList", bean); 
 	}
 
 	public SiteInfoBean select(SiteInfoBean bean) {

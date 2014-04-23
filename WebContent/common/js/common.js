@@ -44,7 +44,7 @@
                         url: arg.url,
                         data: arg.data,
                         dataType: "json",///取得するデータの形により変わる。text/json..など
-                        contentType: "application/x-www-form-urlencoded",
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                         success: function (response, xhr) {
                         	arg.success(response);
                             if (arg.complete)

@@ -11,6 +11,8 @@
 
 package jp.co.softwiz.main.dao.sqlmap.admin;
 
+import java.util.List;
+
 import jp.co.softwiz.main.dao.iface.admin.CategoryDaoInterface;
 import jp.co.softwiz.main.dao.sqlmap.CategoryDao;
 import jp.co.softwiz.main.domain.admin.CateMainBean;
@@ -63,6 +65,10 @@ public class CategoryDaoImpl extends CategoryDao implements CategoryDaoInterface
 
 		//大分類カテゴリの使用可否を変更する。
 		sqlSessionTemplate.update("Setup.updateCateMainUseDiv", bean);
+	}
+
+	public List<CateSubBean> selectCateSubListForUseDiv(CateMainBean bean){
+		return sqlSessionTemplate.selectList("Category.selectCateSubListForUseDiv", bean);
 	}
 
 }

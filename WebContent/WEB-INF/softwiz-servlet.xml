@@ -22,7 +22,15 @@
 
 	<context:component-scan base-package="jp.co.softwiz" />
 
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+				<property name="writeAcceptCharset" value="false" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
 
 
 	<bean id="propertyConfigurer"
@@ -179,8 +187,7 @@
 		</property>
 	</bean>
 
-
-
+	<bean id="masterPreload" class="jp.co.softwiz.main.common.util.MasterPreload" init-method="init" />
 
 </beans>
 
