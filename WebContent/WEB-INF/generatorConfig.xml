@@ -21,19 +21,19 @@
 		<table schema="" tableName="T_BOARD_MASTER_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_NEWS_INFO" enableDeleteByExample="false" enableCountByExample="false"
+		<table schema="" tableName="T_BOARD_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_TOIAWASE_INFO" enableDeleteByExample="false" enableCountByExample="false"
+		<table schema="" tableName="T_BOARD_FILE_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_COMPANY_INFO" enableDeleteByExample="false" enableCountByExample="false"
+		<table schema="" tableName="T_COMPANY_PAID_SERVICE_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_USER_INFO" enableDeleteByExample="false" enableCountByExample="false"
+		<table schema="" tableName="T_COMPANY_PAID_SERVICE_HISTORY_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_SITE_INFO" enableDeleteByExample="false" enableCountByExample="false"
+		<table schema="" tableName="T_AREA_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
 	</context>

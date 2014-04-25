@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS T_AREA_INFO;
+DROP TABLE IF EXISTS T_COMPANY_PAID_SERVICE_HISTORY_INFO;
+DROP TABLE IF EXISTS T_COMPANY_PAID_SERVICE_INFO;
+DROP TABLE IF EXISTS T_BOARD_FILE_INFO;
+DROP TABLE IF EXISTS T_BOARD_INFO;
 DROP TABLE IF EXISTS T_BOARD_MASTER_INFO;
 DROP TABLE IF EXISTS T_NEWS_INFO;
 DROP TABLE IF EXISTS T_TOIAWASE_INFO;
@@ -216,7 +221,117 @@ CREATE TABLE T_NEWS_INFO(
 /**********************************/
 CREATE TABLE T_BOARD_MASTER_INFO(
 		boardId CHARACTER(3) NOT NULL,
-		boardName VARCHAR(100) NOT NULL
+		boardName VARCHAR(100) NOT NULL,
+		boardType CHARACTER(1),
+		useDiv CHARACTER(1)
+);
+
+/**********************************/
+/* テーブル名: 掲示板情報 */
+/**********************************/
+CREATE TABLE T_BOARD_INFO(
+		boardNo BIGSERIAL NOT NULL,
+		siteId CHARACTER(3) NOT NULL,
+		userCode VARCHAR(50),
+		boardId CHARACTER(3),
+		group BIGINT,
+		groupNum BIGINT,
+		groupCount INTEGER,
+		name VARCHAR(100) NOT NULL,
+		email VARCHAR(200),
+		title VARCHAR(500),
+		content TEXT,
+		yyyymmdd VARCHAR(8),
+		createDate TIMESTAMP,
+		createUser VARCHAR(30),
+		modifyDate TIMESTAMP,
+		modifyUser VARCHAR(30),
+		deleteFlag CHARACTER(1),
+		deleteDate TIMESTAMP,
+		deleteUser VARCHAR(30)
+);
+
+/**********************************/
+/* テーブル名: 掲示板添付ファイル情報 */
+/**********************************/
+CREATE TABLE T_BOARD_FILE_INFO(
+		fileNo BIGSERIAL NOT NULL,
+		boardNo BIGINT NOT NULL,
+		originFileName VARCHAR(200) NOT NULL,
+		saveFileName VARCHAR(200),
+		fileSize BIGINT,
+		mimeType VARCHAR(200),
+		filePath VARCHAR(500),
+		useDiv CHARACTER(1),
+		createDate TIMESTAMP,
+		createUser VARCHAR(30),
+		modifyDate TIMESTAMP,
+		modifyUser VARCHAR(30),
+		deleteFlag CHARACTER(1),
+		deleteDate TIMESTAMP,
+		deleteUser VARCHAR(30)
+);
+
+/**********************************/
+/* テーブル名: 企業有料サービス情報 */
+/**********************************/
+CREATE TABLE T_COMPANY_PAID_SERVICE_INFO(
+		siteId CHARACTER(3) NOT NULL,
+		companyCode VARCHAR(50),
+		serviceCode CHARACTER(3),
+		useDiv CHARACTER(1),
+		startDay CHARACTER(8),
+		endDay CHARACTER(8),
+		paymentDiv CHARACTER(1),
+		etc VARCHAR(500),
+		createDate TIMESTAMP,
+		createUser VARCHAR(30),
+		modifyDate TIMESTAMP,
+		modifyUser VARCHAR(30),
+		deleteFlag CHARACTER(1),
+		deleteDate TIMESTAMP,
+		deleteUser VARCHAR(30)
+);
+
+/**********************************/
+/* テーブル名: 企業有料サービス履歴情報 */
+/**********************************/
+CREATE TABLE T_COMPANY_PAID_SERVICE_HISTORY_INFO(
+		historyNo SERIAL NOT NULL,
+		siteId CHARACTER(3) NOT NULL,
+		companyCode VARCHAR(50) NOT NULL,
+		serviceCode CHARACTER(3),
+		useDiv CHARACTER(1),
+		startDay CHARACTER(8),
+		endDay CHARACTER(8),
+		paymentDiv CHARACTER(1),
+		etc VARCHAR(500),
+		registDay CHARACTER(8),
+		createDate TIMESTAMP,
+		createUser VARCHAR(30),
+		modifyDate TIMESTAMP,
+		modifyUser VARCHAR(30),
+		deleteFlag CHARACTER(1),
+		deleteDate TIMESTAMP,
+		deleteUser VARCHAR(30)
+);
+
+/**********************************/
+/* テーブル名: 都道府県情報 */
+/**********************************/
+CREATE TABLE T_AREA_INFO(
+		areaNo SERIAL NOT NULL,
+		areaDiv CHARACTER(3),
+		useDiv CHARACTER(1) NOT NULL,
+		areaName VARCHAR(300),
+		etc VARCHAR(500),
+		createDate TIMESTAMP,
+		createUser VARCHAR(30),
+		modifyDate TIMESTAMP,
+		modifyUser VARCHAR(30),
+		deleteFlag CHARACTER(1),
+		deleteDate TIMESTAMP,
+		deleteUser VARCHAR(30)
 );
 
 
@@ -247,4 +362,18 @@ ALTER TABLE T_TOIAWASE_INFO ADD CONSTRAINT IDX_T_TOIAWASE_INFO_FK0 FOREIGN KEY (
 ALTER TABLE T_NEWS_INFO ADD CONSTRAINT IDX_T_NEWS_INFO_PK PRIMARY KEY (newsNo);
 
 ALTER TABLE T_BOARD_MASTER_INFO ADD CONSTRAINT IDX_T_BOARD_MASTER_INFO_PK PRIMARY KEY (boardId);
+
+ALTER TABLE T_BOARD_INFO ADD CONSTRAINT IDX_T_BOARD_INFO_PK PRIMARY KEY (boardNo);
+ALTER TABLE T_BOARD_INFO ADD CONSTRAINT IDX_T_BOARD_INFO_FK0 FOREIGN KEY (boardId) REFERENCES T_BOARD_MASTER_INFO (boardId);
+
+ALTER TABLE T_BOARD_FILE_INFO ADD CONSTRAINT IDX_T_BOARD_FILE_INFO_PK PRIMARY KEY (fileNo);
+ALTER TABLE T_BOARD_FILE_INFO ADD CONSTRAINT IDX_T_BOARD_FILE_INFO_FK0 FOREIGN KEY (boardNo) REFERENCES T_BOARD_INFO (boardNo);
+
+ALTER TABLE T_COMPANY_PAID_SERVICE_INFO ADD CONSTRAINT IDX_T_COMPANY_PAID_SERVICE_INFO_PK PRIMARY KEY (siteId);
+ALTER TABLE T_COMPANY_PAID_SERVICE_INFO ADD CONSTRAINT IDX_T_COMPANY_PAID_SERVICE_INFO_FK0 FOREIGN KEY (siteId,companyCode) REFERENCES T_COMPANY_INFO (siteId,companyCode);
+
+ALTER TABLE T_COMPANY_PAID_SERVICE_HISTORY_INFO ADD CONSTRAINT IDX_T_COMPANY_PAID_SERVICE_HISTORY_INFO_PK PRIMARY KEY (historyNo);
+ALTER TABLE T_COMPANY_PAID_SERVICE_HISTORY_INFO ADD CONSTRAINT IDX_T_COMPANY_PAID_SERVICE_HISTORY_INFO_FK0 FOREIGN KEY (siteId) REFERENCES T_COMPANY_PAID_SERVICE_INFO (siteId);
+
+ALTER TABLE T_AREA_INFO ADD CONSTRAINT IDX_T_AREA_INFO_PK PRIMARY KEY (areaNo);
 
