@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
-	<classPathEntry location="C:\Users\gtc-yun\.m2\repository\org\postgresql\postgresql\9.2-1002-jdbc4\postgresql-9.2-1002-jdbc4.jar" />
+	<classPathEntry location="C:\Users\gunny\.m2\repository\org\postgresql\postgresql\9.2-1002-jdbc4\postgresql-9.2-1002-jdbc4.jar" />
 
 	<context id="context1">
 		<jdbcConnection driverClass="org.postgresql.Driver"
@@ -18,23 +18,9 @@
 		<sqlMapGenerator targetPackage="jp.co.softwiz.main.mapper"
 			targetProject="jobadmin" />
 
-		<table schema="" tableName="T_BOARD_MASTER_INFO" enableDeleteByExample="false" enableCountByExample="false"
+		<table schema="" tableName="T_QNA_INFO" enableDeleteByExample="false" enableCountByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false"
 			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_BOARD_INFO" enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false"
-			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_BOARD_FILE_INFO" enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false"
-			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_COMPANY_PAID_SERVICE_INFO" enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false"
-			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_COMPANY_PAID_SERVICE_HISTORY_INFO" enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false"
-			enableSelectByExample="false" modelType="flat"/>
-		<table schema="" tableName="T_AREA_INFO" enableDeleteByExample="false" enableCountByExample="false"
-			enableUpdateByExample="false" selectByExampleQueryId="false"
-			enableSelectByExample="false" modelType="flat"/>
+
 	</context>
 </generatorConfiguration>
